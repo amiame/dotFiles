@@ -3,7 +3,7 @@
 1. Install Neovim
 2. Install [packer.nvim](https://github.com/wbthomason/packer.nvim#quickstart)
    - Just do this: `git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim`
-3. Copy `.config/nvim/\*\*/\*` to `$HOME/.config/nvim/\*\*/\*`
+3. Copy `.config/nvim/**/*` to `$HOME/.config/nvim/**/*`
 4. Open Neovim. Navigate to `$HOME/.config/nvim/lua/amir/packer.lua`
 5. Run Ex command `:so`
 6. Reopen Neovim
