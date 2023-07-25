@@ -37,4 +37,5 @@ vim.opt.colorcolumn = "120"
 
 vim.g.mapleader = " "
 
+-- In wsl, disable mouse so you can copy paste using Shift+Control+c and Shift+Control+v
 vim.opt.mouse = ""
