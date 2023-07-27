@@ -7,6 +7,7 @@ brew install ripgrep
 brew install fzf
 $(brew --prefix)/opt/fzf/install
 brew install tree
+brew install tmux
 brew install nvim
 
 cp -R .config ~/.
