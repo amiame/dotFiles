@@ -38,7 +38,7 @@ case $purpose in
 		git config --local user.email "amiame2008@gmail.com"
 		;;
 	work|zeroboard)
-		git config --local user.email "amir.fikri@zeroboard.jp"
+		git config --local user.email "amiame2008@gmail.com"
 		;;
 esac
 
