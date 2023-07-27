@@ -9,6 +9,9 @@ $(brew --prefix)/opt/fzf/install
 brew install tree
 brew install tmux
 brew install nvim
+brew install go
+brew install goenv
+brew install tfenv
 
 cp -R .config ~/.
 cp -R .local ~/.
