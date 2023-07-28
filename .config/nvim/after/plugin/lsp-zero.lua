@@ -58,3 +58,9 @@ lsp.on_attach(function(_, bufnr)
 end)
 
 lsp.setup()
+
+-- Format go files on buffer write
+vim.api.nvim_create_autocmd({"BufWrite"}, {
+  pattern = {"*.go"},
+  command = "LspZeroFormat",
+})
