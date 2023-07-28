@@ -3,23 +3,24 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/work -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~/work/*/worktrees/feat ~/work/*/worktrees/fix ~/work/*/worktrees/others -mindepth 1 -maxdepth 1 -type d | sed -e 's@^'"${HOME}"'/work/@@' | fzf)
 fi
 
 if [[ -z $selected ]]; then
     exit 0
 fi
 
-selected_name=$(echo "$selected" | tr . _)
+selected_name=$(echo "$selected" | sed -e 's@^'"${HOME}"'/work/@@' | sed -E 's@/worktrees/(feat|fix|others)/@ -> @' | tr / _)
 tmux_running=$(pgrep tmux)
+selected="$HOME/work/$selected"
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
+    tmux new-session -s "$selected_name" -c $selected
     exit 0
 fi
 
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
+if ! tmux has-session -t="$selected_name" 2> /dev/null; then
+    tmux new-session -ds "$selected_name" -c $selected
 fi
 
-tmux switch-client -t $selected_name
+tmux switch-client -t "$selected_name"
