@@ -13,6 +13,7 @@ brew install go
 brew install goenv
 brew install tfenv
 brew install starfish
+brew install nodenv
 
 cp -R .config ~/.
 cp -R .local ~/.
