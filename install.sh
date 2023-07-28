@@ -1,7 +1,7 @@
 #! /bin/bash
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/amir_c/.zprofile
+$(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/amir_c/.profile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 brew install ripgrep
 brew install fzf
