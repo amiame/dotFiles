@@ -12,6 +12,7 @@ brew install nvim
 brew install go
 brew install goenv
 brew install tfenv
+brew install starfish
 
 cp -R .config ~/.
 cp -R .local ~/.
