@@ -1,0 +1,54 @@
+#! /bin/bash
+set -e
+
+if [ $# -ne 4 ]; then
+  echo "$(basename $0) needs 4 parameters:"
+  echo "    1: remote repo URL"
+  echo "    2: remote repo's commit to copy"
+  echo "    3: the name of local repo to create"
+  echo "    4: the branch to create in local repo"
+  exit 1
+fi
+remote_repo=$1
+commit=$2
+local_repo=$3
+destination_branch=$4
+
+mkdir $local_repo
+cd $local_repo
+git init --bare .bare
+echo "gitdir: ./.bare" > .git
+local_repo_absolute_path=$(pwd)
+cd ..
+
+git clone "$remote_repo" .temp
+cd .temp
+git checkout $commit
+rm -Rf .git
+git init .
+git checkout -b temp_branch
+git add -f *
+git commit -m "Initial commit"
+git remote add local_repo $local_repo_absolute_path
+git push local_repo temp_branch:$destination_branch
+cd ..
+rm -Rf .temp
+
+cd $local_repo
+
+# Add user name and email to local git config file
+git config --local user.name "amiame"
+git config --local user.email "amiame2008@gmail.com"
+
+# Make a 'worktrees' folder to store all worktrees
+mkdir -p worktrees/others worktrees/fix worktrees/feat worktrees/refac
+type=$(dirname $destination_branch)
+case $type in
+  "feat"*|"fix"*)
+    cd worktrees
+    ;;
+  *)
+    cd worktrees/others
+    ;;
+esac
+git worktree add $destination_branch $destination_branch

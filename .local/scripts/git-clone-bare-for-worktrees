@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#! /bin/bash
 set -e
 
 # Examples of call:
@@ -9,10 +9,19 @@ set -e
 # => Clones to a /my-repo directory with local git config user.email configured to private email
 
 purpose=$1
-url=$2
+where=$2
+url=$3
+case $purpose in
+	private)
+    ;;
+	work)
+    url=$(echo $url | sed -r 's@github.com@work.github.com@')
+		;;
+esac
 basename=${url##*/}
-name=${3:-${basename%.*}}
+name=${4:-${basename%.*}}
 
+cd "$where"
 mkdir -p $name
 cd "$name"
 
@@ -32,13 +41,14 @@ echo "gitdir: ./.bare" > .git
 git config --local remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 
 # Add user name and email to local git config file
-git config --local user.name "amiame"
 case $purpose in
 	private)
-		git config --local user.email "amiame2008@gmail.com"
+    git config --local user.name "amiame"
+    git config --local user.email "amiame2008@gmail.com"
 		;;
-	work|zeroboard)
-		git config --local user.email "amiame2008@gmail.com"
+	work)
+    git config --local user.name "mm-mirumiru"
+    git config --local user.email "amir@macromill.com"
 		;;
 esac
 
@@ -46,6 +56,6 @@ esac
 git fetch origin
 
 # Make a 'worktrees' folder to store all worktrees
-mkdir -p worktrees/others worktrees/fix worktrees/feat
+mkdir -p worktrees/others worktrees/fix worktrees/feat worktrees/refac
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 git worktree add worktrees/others/$current_branch $current_branch

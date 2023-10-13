@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/work/*/worktrees/feat ~/work/*/worktrees/fix ~/work/*/worktrees/others -mindepth 1 -maxdepth 1 -type d | sed -e 's@^'"${HOME}"'/work/@@' | fzf)
+    selected=$(find ~/work/*/worktrees/refac ~/work/*/worktrees/feat ~/work/*/worktrees/fix ~/work/*/worktrees/others -mindepth 1 -maxdepth 1 -type d | sed -e 's@^'"${HOME}"'/work/@@' | fzf)
 fi
 
 if [[ -z $selected ]]; then
