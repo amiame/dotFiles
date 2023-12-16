@@ -4,8 +4,8 @@ if [[ $# -eq 1 ]]; then
     selected=$1
 else
     selected=$(find \
-      ~/work/*/worktrees/refac \ 
-      ~/work/*/worktrees/refactoring \ 
+      ~/work/*/worktrees/refac \
+      ~/work/*/worktrees/refactoring \
       ~/work/*/worktrees/feat \
       ~/work/*/worktrees/feature \
       ~/work/*/worktrees/fix \
