@@ -12,7 +12,7 @@ brew install nvim
 brew install go
 brew install goenv
 brew install tfenv
-brew install starfish
+brew install starship
 brew install nodenv
 
 cp -R .config ~/.
