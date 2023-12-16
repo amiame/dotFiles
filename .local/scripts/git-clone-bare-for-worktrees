@@ -56,6 +56,6 @@ esac
 git fetch origin
 
 # Make a 'worktrees' folder to store all worktrees
-mkdir -p worktrees/others worktrees/fix worktrees/feat worktrees/refac
+mkdir -p worktrees/others worktrees/fix worktrees/feat worktrees/feature worktrees/refac
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 git worktree add worktrees/others/$current_branch $current_branch
