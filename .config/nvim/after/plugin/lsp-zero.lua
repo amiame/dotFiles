@@ -1,9 +1,9 @@
 -- Learn the keybindings, see :help lsp-zero-keybindings
 -- Learn to configure LSP servers, see :help lsp-zero-api-showcase
 local lsp_zero = require('lsp-zero')
+lsp_zero.extend_lspconfig()
+-- lsp_zero.setup()
 lsp_zero.preset('recommended')
-
-lsp_zero.setup()
 
 lsp_zero.on_attach(function(_, bufnr)
   local opts = { buffer = bufnr, remap = false }
@@ -57,6 +57,29 @@ require('mason-lspconfig').setup({
   },
   handlers = {
     lsp_zero.default_setup,
+    gopls = function()
+      require('lspconfig').gopls.setup({
+        settings = {
+          gopls = {
+            --analyses = {
+            --  unusedparams = true,
+            --},
+            --staticcheck = true,
+            --gofumpt = true,
+            --buildFlags = {
+            --  '--global url."ssh://git@github.com/".insteadOf "https://github.com/"'
+            --},
+            env = {
+              GOPRIVATE = 'github.com/macromill-mint'
+            },
+          },
+        },
+        ---
+        -- in here you can add your own
+        -- custom configuration
+        ---
+      })
+    end,
   },
 })
 
@@ -78,6 +101,6 @@ cmp.setup({
 
 -- Format go files on buffer write
 vim.api.nvim_create_autocmd({ "BufWrite" }, {
-  pattern = { "*.go" },
+  pattern = { "*.go,*.tf,*.json" },
   command = "LspZeroFormat",
 })

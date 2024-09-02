@@ -1,3 +1,4 @@
+vim.opt.fileencodings="ucs-bom,utf-8,default,latin1,sjis"
 vim.opt.guicursor = ""
 
 vim.opt.nu = true
@@ -33,8 +34,10 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "120"
+vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
 
--- vim.opt.virtualedit = "all"
+vim.opt.virtualedit = "block"
+
+vim.opt.conceallevel = 2
